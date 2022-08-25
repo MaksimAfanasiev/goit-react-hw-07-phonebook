@@ -1,4 +1,3 @@
-// import { nanoid } from 'nanoid';
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {addContact} from "../../reduxStore/operations"
@@ -7,7 +6,7 @@ import css from "./ContactForm.module.css";
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
 
   const contacts = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
@@ -21,7 +20,7 @@ export const ContactForm = () => {
         break;
       
       case 'phone':
-        setNumber(value)
+        setPhone(value)
         break;
       
       default:
@@ -47,7 +46,7 @@ export const ContactForm = () => {
     addContactItem(name, phone);
 
     setName('');
-    setNumber('');
+    setPhone('');
   }
 
   return (
