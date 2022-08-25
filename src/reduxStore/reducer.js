@@ -1,5 +1,10 @@
-import { addItem, removeItem, filterValue } from './actions';
+import * as contactActions from './actions';
 import { createReducer } from '@reduxjs/toolkit';
+import {
+  getContacts,
+  addContact,
+  removeContact,
+} from '../reduxStore/operations';
 
 const initState = {
   items: [],
@@ -9,13 +14,19 @@ const initState = {
 // Reducer
 
 export const rootReducer = createReducer(initState, {
-  [addItem]: (state, action) => {
-    state.items.push(action.payload);
+  [getContacts.fulfilled]: (state, action) => {
+    state.items = action.payload;
   },
-  [removeItem]: (state, action) => {
-    state.items = state.items.filter(item => item.id !== action.payload);
+
+  [addContact.fulfilled]: (state, action) => {
+    state.items = action.payload;
   },
-  [filterValue]: (state, action) => {
+
+  [removeContact.fulfilled]: (state, action) => {
+    state.items = action.payload;
+  },
+
+  [contactActions.filterValue]: (state, action) => {
     state.filter = action.payload;
   },
 });
